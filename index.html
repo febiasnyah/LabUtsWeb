@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login • Toko Buku</title>
+  <link rel="stylesheet" href="css/style.css" />
+
+  <style>
+    /* Tambahan CSS modal supaya muncul saat .show */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 99;
+    }
+
+    .modal-backdrop.show {
+      display: flex;
+    }
+
+    .modal {
+      background: rgb(21, 17, 17);
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 400px;
+      width: 100%;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .modal h2 {
+      margin-top: 0;
+    }
+  </style>
+</head>
+
+<body data-page="login">
+  <div class="container">
+    <div class="card">
+      <h1>Masuk ke Aplikasi</h1>
+      <p class="small">
+        Gunakan email & password yang ada di <code>data.js</code>.
+      </p>
+
+      <form id="loginForm">
+        <div class="row">
+          <div class="col">
+            <label>Email</label>
+            <input id="email" type="email" placeholder="contoh: rina@gmail.com" required />
+          </div>
+          <div class="col">
+            <label>Password</label>
+            <input id="password" type="password" required />
+          </div>
+        </div>
+
+        <div class="row" style="margin-top: 10px;">
+          <div class="col">
+            <button class="btn pri" type="submit">Login</button>
+          </div>
+          <div class="col right">
+            <button class="btn" type="button" id="btnForgot">Lupa Password</button>
+            <button class="btn" type="button" id="btnRegister">Daftar</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="footer">© 2025 Tugas UTS Pemrograman Web 1</div>
+  </div>
+
+  <!-- Modal Lupa Password -->
+  <div class="modal-backdrop" id="backdropForgot">
+    <div class="modal" id="modalForgot">
+      <h2>Lupa Password</h2>
+      <p>Masukkan email Anda, kami akan menampilkan password (simulasi).</p>
+
+      <label>Email</label>
+      <input id="forgotEmail" type="email" placeholder="nama@email.com" />
+
+      <div class="row" style="margin-top: 10px;">
+        <button class="btn ok" type="button" id="btnSendReset">Tampilkan Password</button>
+        <button class="btn close-modal" type="button">Tutup</button>
+      </div>
+
+      <p id="forgotResult" class="small" style="margin-top: 10px; color: #333;"></p>
+    </div>
+  </div>
+
+  <!-- Modal Daftar -->
+  <div class="modal-backdrop" id="backdropRegister">
+    <div class="modal" id="modalRegister">
+      <h2>Daftar Akun Baru</h2>
+
+      <div class="row">
+        <div class="col">
+          <label>Nama</label>
+          <input id="regNama" type="text" />
+        </div>
+        <div class="col">
+          <label>Email</label>
+          <input id="regEmail" type="email" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <label>Password</label>
+          <input id="regPass" type="password" />
+        </div>
+        <div class="col">
+          <label>Konfirmasi</label>
+          <input id="regConfirm" type="password" />
+        </div>
+      </div>
+
+      <div class="row" style="margin-top: 10px;">
+        <button class="btn ok" type="button" id="btnDoRegister">Daftar</button>
+        <button class="btn close-modal" type="button">Tutup</button>
+      </div>
+
+      <p class="small">
+        * Pendaftaran ini hanya simulasi front-end (tidak disimpan permanen).
+      </p>
+      <p id="regResult" class="small" style="margin-top: 8px;"></p>
+    </div>
+  </div>
+
+  <!-- Script -->
+  <script src="js/data.js"></script>
+  <script src="js/script.js"></script>
+
+  <script>
+    // --- tambahan supaya tombol modal berfungsi ---
+    const forgotBackdrop = document.getElementById('backdropForgot');
+    const regBackdrop = document.getElementById('backdropRegister');
+
+    // buka modal
+    document.getElementById('btnForgot').addEventListener('click', () => {
+      forgotBackdrop.classList.add('show');
+    });
+
+    document.getElementById('btnRegister').addEventListener('click', () => {
+      regBackdrop.classList.add('show');
+    });
+
+    // tutup modal
+    document.querySelectorAll('.close-modal').forEach(btn => {
+      btn.addEventListener('click', () => {
+        forgotBackdrop.classList.remove('show');
+        regBackdrop.classList.remove('show');
+      });
+    });
+
+    // --- simulasi lupa password ---
+    document.getElementById('btnSendReset').addEventListener('click', () => {
+      const email = document.getElementById('forgotEmail').value.trim();
+      const user = (window.dataPengguna || []).find(u => u.email === email);
+      const out = document.getElementById('forgotResult');
+
+      if (user) out.innerHTML = `<strong>Password Anda:</strong> ${user.password}`;
+      else out.textContent = 'Email tidak ditemukan.';
+    });
+
+    // --- simulasi daftar akun baru ---
+    document.getElementById('btnDoRegister').addEventListener('click', () => {
+      const nama = document.getElementById('regNama').value.trim();
+      const email = document.getElementById('regEmail').value.trim();
+      const pass = document.getElementById('regPass').value.trim();
+      const conf = document.getElementById('regConfirm').value.trim();
+      const result = document.getElementById('regResult');
+
+      if (!nama || !email || !pass || !conf) {
+        result.textContent = 'Lengkapi semua data.';
+        return;
+      }
+
+      if (pass !== conf) {
+        result.textContent = 'Password tidak sama.';
+        return;
+      }
+
+      const exist = (window.dataPengguna || []).some(u => u.email === email);
+      if (exist) {
+        result.textContent = 'Email sudah terdaftar.';
+        return;
+      }
+
+      result.textContent = `Akun ${nama} (${email}) berhasil dibuat (simulasi).`;
+    });
+  </script>
+</body>
+</html>

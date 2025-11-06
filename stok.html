@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Stok / Katalog • Toko Buku</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body data-page="stok">
+  <div class="container">
+    <h1 id="greeting">Halo!</h1>
+
+    <div class="card">
+      <div class="row">
+        <div class="col">
+          <h2>Daftar Katalog</h2>
+        </div>
+        <div class="col right">
+          <input id="q" type="search" placeholder="Cari judul/kode/jenis..." />
+        </div>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Cover</th>
+            <th>Kode</th>
+            <th>Judul</th>
+            <th>Stok</th>
+            <th>Harga</th>
+          </tr>
+        </thead>
+        <tbody id="tbodyKatalog"></tbody>
+      </table>
+
+      <div class="row" style="margin-top: 10px;">
+        <button class="btn ok" id="saveLocal" type="button">Simpan ke Local Storage</button>
+        <a href="dashboard.html" class="btn">Kembali</a>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top: 18px;">
+      <h2>Tambah Baris Stok Baru</h2>
+      <form id="formAdd">
+        <div class="row">
+          <div class="col">
+            <label>Kode Barang</label>
+            <input id="kode" required />
+          </div>
+          <div class="col">
+            <label>Nama Barang</label>
+            <input id="nama" required />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <label>Jenis</label>
+            <input id="jenis" value="Buku Ajar" />
+          </div>
+          <div class="col">
+            <label>Edisi</label>
+            <input id="edisi" type="number" value="1" />
+          </div>
+          <div class="col">
+            <label>Stok</label>
+            <input id="stok" type="number" value="10" />
+          </div>
+          <div class="col">
+            <label>Harga (contoh: Rp 150.000)</label>
+            <input id="harga" value="Rp 120.000" />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <label>URL Cover (opsional)</label>
+            <input id="cover" placeholder="img/pengantar_komunikasi.jpg" />
+          </div>
+          <div class="col" style="align-self: flex-end;">
+            <button class="btn pri" type="submit">Tambah</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>

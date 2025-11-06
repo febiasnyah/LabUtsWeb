@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tracking Pengiriman • Toko Buku</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body data-page="tracking">
+  <div class="container">
+    <h1 id="greeting">Halo!</h1>
+
+    <div class="card">
+      <h2>Cari Nomor Delivery Order</h2>
+      <form id="formTrack">
+        <div class="row">
+          <div class="col">
+            <input id="nomorDO" placeholder="contoh: 20230013" required />
+          </div>
+          <div class="col" style="align-self: flex-end;">
+            <button class="btn pri" type="submit">Cari</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div id="hasil" class="container"></div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>

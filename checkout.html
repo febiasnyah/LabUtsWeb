@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Checkout / Pemesanan • Toko Buku</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body data-page="checkout">
+  <div class="container">
+    <h1 id="greeting">Halo!</h1>
+
+    <div class="card">
+      <h2>Keranjang</h2>
+      <table id="tCart">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Harga</th>
+            <th>Qty</th>
+            <th>Subtotal</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+
+      <div class="row" style="margin-top: 10px;">
+        <button class="btn" id="addItem" type="button">Tambah Item</button>
+        <div class="right">
+          <b>Total: <span id="grandTotal">Rp 0</span></b>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top: 18px;">
+      <h2>Informasi Pemesan & Pembayaran</h2>
+      <form id="formOrder">
+        <div class="row">
+          <div class="col">
+            <label>Nama Lengkap</label>
+            <input id="inNama" required />
+          </div>
+          <div class="col">
+            <label>Email</label>
+            <input id="inEmail" type="email" required />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <label>Alamat</label>
+            <input id="inAlamat" required />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <label>Metode Pembayaran</label>
+            <select id="inBayar">
+              <option>Transfer Bank</option>
+              <option>Virtual Account</option>
+              <option>Kartu Kredit</option>
+              <option>COD</option>
+            </select>
+          </div>
+          <div class="col" style="align-self: flex-end;">
+            <button class="btn pri" type="submit">Proses Pemesanan</button>
+            <a class="btn" href="dashboard.html">Kembali</a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>

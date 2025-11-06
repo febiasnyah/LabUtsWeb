@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboard • Toko Buku</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body data-page="dashboard">
+  <div class="container">
+    <div class="card">
+      <button class="btn logout" id="logout">Logout</button>
+      <h1 id="greeting">Halo!</h1>
+      <p class="small">Selamat datang di dashboard pemesanan buku.</p>
+
+      <nav>
+        <a class="btn" href="stok.html">Informasi Stok / Katalog</a>
+        <a class="btn" href="tracking.html">Tracking Pengiriman</a>
+        <a class="btn" href="checkout.html">Halaman Pemesanan</a>
+        <a class="btn" href="#" onclick="alert('History Transaksi belum diimplementasikan (opsional).')">
+          Histroy Transaksi
+        </a>
+      </nav>
+
+      <div class="row">
+        <div class="col card">
+          <h2>Tentang Tugas</h2>
+          <p>
+            Ini adalah aplikasi web sederhana untuk pemesanan buku. Data bersumber dari
+            <code>data.js</code> dan semua fitur berjalan di sisi front-end.
+          </p>
+        </div>
+
+        <div class="col card">
+          <h2>Tips</h2>
+          <ul>
+            <li>Gunakan menu di atas untuk menjelajah.</li>
+            <li>Perubahan stok dapat disimpan sementara ke Local Storage.</li>
+            <li>
+              Gunakan nomor DO contoh:
+              <b>20230012</b> atau <b>20230013</b> untuk tracking.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
